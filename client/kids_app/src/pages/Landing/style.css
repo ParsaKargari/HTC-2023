@@ -13,11 +13,12 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: url("../../assets/morteza.jpg") center center/cover no-repeat;
+  background: url("../../assets/baby-fit.jpg") center center/cover no-repeat;
   filter: blur(8px); /* Apply the blur effect to the background image */
   z-index: -1;
   overflow: hidden;
-  max-width: ;
+  max-width: 100%;
+  height: auto;
 }
 
 .hero-content {
