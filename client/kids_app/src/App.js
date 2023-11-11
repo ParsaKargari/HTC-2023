@@ -22,7 +22,7 @@ function App() {
         formData.append('info', info);
 
         try {
-            const response = await axios.post('http://localhost:8628/add_user', formData, {
+            const response = await axios.post('http://localhost:8628/add_listing', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

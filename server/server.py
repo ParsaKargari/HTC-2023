@@ -17,14 +17,15 @@ dynamodb = boto3.resource(
     aws_access_key_id='AKIAZ5K6T5DY37M2F6J5',
     aws_secret_access_key='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'
 )
-table1_name = 'UserTable'
-table2_name = 'ImageTable'
 
 cloudinary.config(
     cloud_name="dlb4j1jyd",
     api_key="911761227391725",
     api_secret="GD-qbQ3hupMF5Sh1peNGy8JZXlY"
 )
+
+table1_name = 'UserTable'
+table2_name = 'ImageTable'
 
 # Create Table in DynamoDB
 
@@ -54,7 +55,7 @@ def create_tables():
         print("Table 2 created successfully.")
     except ClientError as e:
         print(f"Error creating table: {e}")
-    
+
     try:
         table = dynamodb.create_table(
             TableName=table1_name,
@@ -79,7 +80,6 @@ def create_tables():
         print("Table 1 created successfully.")
     except ClientError as e:
         print(f"Error creating table: {e}")
-
 
 
 # Upload image to Cloudinary
@@ -135,12 +135,14 @@ def login_user():
             return jsonify({"message": "User added successfully"}), 200
         else:
             return jsonify({"message": "User already exists"}), 200
-        
+
     except ClientError as e:
         return jsonify({"error": str(e)}), 500
 
 # Add user to DynamoDB table 2
-@app.route('/add_user', methods=['POST'])
+
+
+@app.route('/add_listing', methods=['POST'])
 def add_user():
     # Extracting text fields from request.form, not request.json
     email = request.form.get('email')
@@ -168,6 +170,38 @@ def add_user():
         table = dynamodb.Table(table2_name)
         table.put_item(Item=user_data)
         return jsonify({"message": "User added successfully", "UUID": user_uuid}), 200
+    except ClientError as e:
+        return jsonify({"error": str(e)}), 500
+
+# Implement Buy
+
+
+@app.route('/buy', methods=['POST'])
+def buy():
+    # Delete Column from DynamoDB table 2, associated with UUID
+    # Reduce buy count by 1, from table 1
+    email = request.form.get('email')
+    ImageUUID = request.form.get('UUID')
+    try:
+        table = dynamodb.Table(table2_name)
+        response = table.get_item(Key={'UUID': ImageUUID})
+        if 'Item' in response:
+            table.delete_item(Key={'UUID': ImageUUID})
+        # Reduce buy count by 1, from table 1
+        table = dynamodb.Table(table1_name)
+        response = table.get_item(Key={'email': email})
+        if 'Item' in response:
+            table.update_item(
+                Key={
+                    'email': email
+                },
+                UpdateExpression="set buy_count = buy_count - :val",
+                ExpressionAttributeValues={
+                    ':val': 1
+                },
+                ReturnValues="UPDATED_NEW"
+            )
+        return jsonify({"message": "Buy successfully"}), 200
     except ClientError as e:
         return jsonify({"error": str(e)}), 500
 
