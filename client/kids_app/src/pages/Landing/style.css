@@ -13,8 +13,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: url("../../assets/baby-fit.jpg") center center/cover no-repeat;
-  filter: blur(8px); /* Apply the blur effect to the background image */
+  background: url("../../assets/morteza_lightskin.png") center center/cover
+    no-repeat;
+  filter: blur(4px); /* Apply the blur effect to the background image */
   z-index: -1;
   overflow: hidden;
   max-width: 100%;
@@ -42,21 +43,6 @@
   /* animation: glow 0.5s infinite alternate; */
 }
 
-/* @keyframes glow {
-  100% {
-    text-shadow: 0 0 1px #fff, 0 0 3px #fff, 0 0 5px #fff,
-      0 0 10px rgba(4, 102, 147, 0.2), 0 0 20px rgba(4, 102, 147, 0.2),
-      0 0 22px rgba(4, 102, 147, 0.2), 0 0 25px rgba(4, 102, 147, 0.2),
-      0 0 37px rgba(4, 102, 147, 0.2);
-  }
-  0% {
-    text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 4px #fff,
-      0 0 9px rgba(4, 102, 147, 0.2), 0 0 18px rgba(4, 102, 147, 0.2),
-      0 0 20px rgba(4, 102, 147, 0.2), 0 0 23px rgba(4, 102, 147, 0.2),
-      0 0 35px rgba(4, 102, 147, 0.2);
-  }
-} */
-
 .hero-content p {
   font-family: var(--font-family2);
   font-weight: 600;
@@ -68,7 +54,6 @@
   outline: 10;
   font-weight: bolder;
   text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
-  /* animation: glow 0.5s infinite alternate; */
 }
 
 .hero-content__input {
