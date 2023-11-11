@@ -7,21 +7,23 @@ import cloudinary.uploader
 # Random UUID generator
 import uuid
 
+from config import region_name, aws_access_key_id, aws_secret_access_key, cloud_name, api_key, api_secret
+
 app = Flask(__name__)
 CORS(app)
 
 # Initialize DynamoDB resource
 dynamodb = boto3.resource(
     'dynamodb',
-    region_name='ca-central-1',
-    aws_access_key_id='AKIAZ5K6T5DY37M2F6J5',
-    aws_secret_access_key='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'
+    region_name=region_name,
+    aws_access_key_id=aws_access_key_id,
+    aws_secret_access_key=aws_secret_access_key
 )
 
 cloudinary.config(
-    cloud_name="dlb4j1jyd",
-    api_key="911761227391725",
-    api_secret="GD-qbQ3hupMF5Sh1peNGy8JZXlY"
+    cloud_name=cloud_name,
+    api_key=api_key,
+    api_secret=api_secret
 )
 
 table1_name = 'UserTable'
