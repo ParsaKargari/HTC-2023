@@ -101,41 +101,7 @@
   flex-direction: column;
   padding: 0.5rem;
   padding-top: 1rem;
-
-  /* ff 3.6+ */
-  background: -moz-radial-gradient(
-    circle at 3% 25%,
-    rgba(0, 0, 0, 1) 17%,
-    rgba(4, 102, 147, 1) 90%
-  );
-
-  /* safari 5.1+,chrome 10+ */
-  background: -webkit-radial-gradient(
-    circle at 3% 25%,
-    rgba(0, 0, 0, 1) 17%,
-    rgba(4, 102, 147, 1) 90%
-  );
-
-  /* opera 11.10+ */
-  background: -o-radial-gradient(
-    circle at 3% 25%,
-    rgba(0, 0, 0, 1) 17%,
-    rgba(4, 102, 147, 1) 90%
-  );
-
-  /* ie 10+ */
-  background: -ms-radial-gradient(
-    circle at 3% 25%,
-    rgba(0, 0, 0, 1) 17%,
-    rgba(4, 102, 147, 1) 90%
-  );
-
-  /* global 92%+ browsers support */
-  background: radial-gradient(
-    circle at 3% 25%,
-    rgba(0, 0, 0, 1) 17%,
-    rgba(4, 102, 147, 1) 90%
-  );
+  background: #ffe3bb;
 }
 
 .about-heading {
@@ -144,6 +110,7 @@
   justify-content: space-between;
   align-items: center;
   margin: 4rem 2rem 2rem;
+  color: white;
 }
 
 .about-rows {
@@ -170,7 +137,7 @@
   text-transform: uppercase;
 }
 
-.about-heading h1 {
+.about-content h2 {
   font-size: 60px;
   line-height: 45px;
   font-weight: 800;
