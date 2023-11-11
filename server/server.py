@@ -17,7 +17,8 @@ dynamodb = boto3.resource(
     aws_access_key_id='AKIAZ5K6T5DY37M2F6J5',
     aws_secret_access_key='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'
 )
-table_name = 'UserTable'
+table1_name = 'UserTable'
+table2_name = 'ImageTable'
 
 cloudinary.config(
     cloud_name="dlb4j1jyd",
@@ -28,10 +29,10 @@ cloudinary.config(
 # Create Table in DynamoDB
 
 
-def create_table():
+def create_tables():
     try:
         table = dynamodb.create_table(
-            TableName=table_name,
+            TableName=table2_name,
             KeySchema=[
                 {
                     'AttributeName': 'UUID',
@@ -50,16 +51,38 @@ def create_table():
             }
         )
         table.wait_until_exists()  # Wait for table creation
-        print("Table created successfully.")
+        print("Table 2 created successfully.")
+    except ClientError as e:
+        print(f"Error creating table: {e}")
+    
+    try:
+        table = dynamodb.create_table(
+            TableName=table1_name,
+            KeySchema=[
+                {
+                    'AttributeName': 'email',
+                    'KeyType': 'HASH'  # Partition key
+                }
+            ],
+            AttributeDefinitions=[
+                {
+                    'AttributeName': 'email',
+                    'AttributeType': 'S'
+                }
+            ],
+            ProvisionedThroughput={
+                'ReadCapacityUnits': 1,
+                'WriteCapacityUnits': 1
+            }
+        )
+        table.wait_until_exists()  # Wait for table creation
+        print("Table 1 created successfully.")
     except ClientError as e:
         print(f"Error creating table: {e}")
 
-# Uncomment the below line to create the table. Run once.
-# create_table()
+
 
 # Upload image to Cloudinary
-
-
 def upload_image():
     if 'image' not in request.files:
         return jsonify({"error": "No image found"}), 400
@@ -88,13 +111,40 @@ def upload_image_to_cloudinary(image_file):
         return None
 
 
-# Add user to DynamoDB table
+# Add user to DynamoDB table 1
+@app.route('/login_user', methods=['POST'])
+def login_user():
+    # Extracting text fields from request.form, not request.json
+    email = request.form.get('email')
+
+    # Construct user data
+    user_data = {
+        'email': email,
+        'buy_count': 3,
+    }
+
+    # Add user to DynamoDB table
+    try:
+        table = dynamodb.Table(table1_name)
+
+        # Check if user exists, if not, add user
+        response = table.get_item(Key={'email': email})
+        print(response)
+        if 'Item' not in response:
+            table.put_item(Item=user_data)
+            return jsonify({"message": "User added successfully"}), 200
+        else:
+            return jsonify({"message": "User already exists"}), 200
+        
+    except ClientError as e:
+        return jsonify({"error": str(e)}), 500
+
+# Add user to DynamoDB table 2
 @app.route('/add_user', methods=['POST'])
 def add_user():
     # Extracting text fields from request.form, not request.json
     email = request.form.get('email')
     name = request.form.get('name')
-    phone = request.form.get('phone')
     info = request.form.get('info')
     image_file = request.files.get('image')
 
@@ -109,14 +159,13 @@ def add_user():
         'UUID': user_uuid,
         'Email': email,
         'Name': name,
-        'Phone': phone,
         'Info': info,
         'ImageURL': image_url
     }
 
     # Add user to DynamoDB table
     try:
-        table = dynamodb.Table(table_name)
+        table = dynamodb.Table(table2_name)
         table.put_item(Item=user_data)
         return jsonify({"message": "User added successfully", "UUID": user_uuid}), 200
     except ClientError as e:
@@ -126,5 +175,5 @@ def add_user():
 if __name__ == '__main__':
     # Run the app on all interfaces on port 8628
     # Uncomment the below line to create the table. Run once.
-    # create_table()
+    # create_tables()
     app.run(debug=True, host='0.0.0.0', port=8628)
