@@ -6,15 +6,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-import logo from "../../kids_app/src/assets/logo";
-import "../src/components/";
 
 const Navbar = () => {
   return (
     <AppBar position="static" className="navbar">
       <Toolbar className="navbar-links">
         <div className="navbar-links_logo">
-          <img src={logo} alt="Logo" />
+          
         </div>
         <div className="navbar-links_container">
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
