@@ -117,10 +117,12 @@ def upload_image_to_cloudinary(image_file):
 def login_user():
     # Extracting text fields from request.form, not request.json
     email = request.form.get('email')
+    picture = request.form.get('picture')
 
     # Construct user data
     user_data = {
         'email': email,
+        'picture': picture,
         'buy_count': 3,
         'sell_count': 0,
     }
