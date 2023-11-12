@@ -30,7 +30,7 @@ const Navbar = () => {
     const fetchUserDetails = async () => {
       // Replace '/path-to-your-api' with the actual path to your API that returns user details
       try {
-        const response = await fetch("http://10.9.155.81:8628/get_listings_t1");
+        const response = await fetch("/get_listings_t1");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }

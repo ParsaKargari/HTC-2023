@@ -50,7 +50,7 @@ const LoginModal = ({ open, onClose, clientId }) => {
       onClose();
       try {
         // Send the POST request with form data
-        const res = await fetch("http://10.13.164.140:8628/login_user", {
+        const res = await fetch("/login_user", {
           method: "POST",
           body: formData,
         });

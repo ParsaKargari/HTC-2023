@@ -7,7 +7,6 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import axios from 'axios';
 import { useAuth } from "../../AuthContext";
-import backgroundImage from '../../assets/background1.png'; // Adjust the path as needed
 
 import "./style.css";
 
@@ -19,7 +18,7 @@ const Buynow = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://10.9.155.81:8628/get_listings_t2");
+        const response = await fetch("/get_listings_t2");
         const jsonData = await response.json();
         setData(jsonData);
       } catch (error) {
@@ -36,7 +35,7 @@ const Buynow = () => {
   useEffect(() => {
     const fetchData2 = async () => {
       try {
-        const response = await fetch("http://10.9.155.81:8628/get_listings_t1");
+        const response = await fetch("/get_listings_t1");
         const jsonData = await response.json();
         if (jsonData[0].buy_count === '0') {
           setCantBuy(true);
@@ -76,7 +75,7 @@ const Buynow = () => {
       };
   
       // Send the POST request with form data
-      const response = await axios.post('http://10.9.155.81:8628/buy', formData, config);
+      const response = await axios.post('/buy', formData, config);
   
       // Handle response
       console.log(response.data);
