@@ -45,6 +45,7 @@ const LoginModal = ({ open, onClose, clientId }) => {
       // Prepare form data
       const formData = new FormData();
       formData.append("email", userInfo.email);
+      formData.append("picture", userInfo.picture);
       // Close the modal after successful login
       onClose();
       try {
