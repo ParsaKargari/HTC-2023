@@ -30,15 +30,21 @@ const Buynow = () => {
 
   const handleBuyNow = async (UUID, email) => {
     try {
-      // Construct the payload
-      const payload = {
-        UUID,
-        email: email
+      // Construct form data
+      const formData = new FormData();
+      formData.append('UUID', UUID);
+      formData.append('email', email);
+  
+      // Set the request headers for form data
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
       };
-      
-      // Send the POST request
-      const response = await axios.post('http://10.13.164.140:8628/buy', payload);
-
+  
+      // Send the POST request with form data
+      const response = await axios.post('http://10.13.164.140:8628/buy', formData, config);
+  
       // Handle response
       console.log(response.data);
       // You might want to show a success message or handle the UI change
@@ -47,6 +53,7 @@ const Buynow = () => {
       // Handle errors, possibly showing an error message to the user
     }
   };
+  
 
   const createCards = () => {
     return data.map((item) => (
