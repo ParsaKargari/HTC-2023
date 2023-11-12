@@ -4,6 +4,7 @@
   width: 100%;
   overflow: hidden;
   padding: 0;
+  height: 100vh; /* Set the height to cover the entire viewport */
 }
 
 .hero::before {
@@ -13,8 +14,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: url("../../assets/baby-fit.jpg") center center/cover no-repeat;
-  filter: blur(8px); /* Apply the blur effect to the background image */
+  background: url("../../assets/morteza_lightskin.png") center center/cover
+    no-repeat;
+  filter: blur(4px); /* Apply the blur effect to the background image */
   z-index: -1;
   overflow: hidden;
   max-width: 100%;
@@ -40,22 +42,8 @@
   font-weight: bolder;
   text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
   /* animation: glow 0.5s infinite alternate; */
+  padding-bottom: 2rem;
 }
-
-/* @keyframes glow {
-  100% {
-    text-shadow: 0 0 1px #fff, 0 0 3px #fff, 0 0 5px #fff,
-      0 0 10px rgba(4, 102, 147, 0.2), 0 0 20px rgba(4, 102, 147, 0.2),
-      0 0 22px rgba(4, 102, 147, 0.2), 0 0 25px rgba(4, 102, 147, 0.2),
-      0 0 37px rgba(4, 102, 147, 0.2);
-  }
-  0% {
-    text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 4px #fff,
-      0 0 9px rgba(4, 102, 147, 0.2), 0 0 18px rgba(4, 102, 147, 0.2),
-      0 0 20px rgba(4, 102, 147, 0.2), 0 0 23px rgba(4, 102, 147, 0.2),
-      0 0 35px rgba(4, 102, 147, 0.2);
-  }
-} */
 
 .hero-content p {
   font-family: var(--font-family2);
@@ -68,7 +56,6 @@
   outline: 10;
   font-weight: bolder;
   text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
-  /* animation: glow 0.5s infinite alternate; */
 }
 
 .hero-content__input {
@@ -109,4 +96,138 @@
     font-size: 14px;
     line-height: 24px;
   }
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  padding-top: 1rem;
+  background: #ffe3bb;
+}
+
+.about-heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4rem 2rem 2rem;
+  color: white;
+}
+
+.about-rows {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4rem 2rem 2rem;
+  font-size: 34px;
+  line-height: 45px;
+  font-weight: 800;
+  font-family: var(--font-family);
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2rem;
+  margin-top: 20px; /* Adjust this value to control the vertical spacing */
+}
+
+.about-link {
+  margin-right: 30px; /* Adjust this value to control the horizontal spacing */
+  text-transform: uppercase;
+}
+
+.about-content h2 {
+  font-size: 60px;
+  line-height: 45px;
+  font-weight: 800;
+  font-family: var(--font-family);
+  color: #fff;
+  text-align: left;
+  padding-bottom: 3rem;
+}
+
+.about-heading p {
+  font-size: 34px;
+  line-height: 45px;
+  font-weight: 800;
+  font-family: var(--font-family);
+  color: #fff;
+  text-align: center;
+}
+
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 650px) {
+  .about-services .about__services-container__services {
+    flex-direction: column;
+  }
+
+  .about-services .about__services-container__services-text {
+    margin-top: 0.5rem;
+  }
+
+  .about-heading h1 {
+    font-size: 28px;
+    line-height: 40px;
+  }
+  .about-heading p {
+    font-size: 28px;
+    line-height: 40px;
+  }
+  .about-rows {
+    font-size: 28px;
+    line-height: 40px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .about-services .about__services-container__services {
+    margin: 1rem 0;
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-rows {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-link {
+    margin: 5px 0;
+  }
+}
+
+/* Add the following styles to your existing CSS or create a new CSS file */
+
+/* ... your existing styles ... */
+
+.hero-content button {
+  font-family: var(--font-family3);
+  background-color: #96beff; /* Green background color */
+  color: white; /* White text color */
+  padding: 15px 32px; /* Padding around the text */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px; /* Margin between buttons */
+  cursor: pointer;
+  border: none; /* Remove button border */
+  border-radius: 5px; /* Optional: Add some border-radius for rounded corners */
+  font-weight: bolder;
+  text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content button:hover {
+  background-color: #b4bdff; /* Darker green color on hover */
 }
