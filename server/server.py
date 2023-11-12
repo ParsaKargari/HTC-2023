@@ -6,9 +6,13 @@ import cloudinary
 import cloudinary.uploader
 # Random UUID generator
 import uuid
+from openai import OpenAI
 
 
 app = Flask(__name__)
+client = OpenAI(
+    api_key="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"
+)
 CORS(app)
 
 # Initialize DynamoDB resource
@@ -101,6 +105,36 @@ def upload_image():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+# Confirm image with OpenAI
+
+
+def confirm_image(link):
+    print("Confirming image")
+    response = client.chat.completions.create(
+        model="gpt-4-vision-preview",
+        messages=[
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": "True or False? Is this image showing child's clothing? Please answer with 'True' or 'False'."},
+                    {
+                        "type": "image_url",
+                        "image_url": {
+                            "url": link,
+                        },
+                    },
+                ],
+            }
+        ],
+        max_tokens=50,
+    )
+    answer = response.choices[0].message.content.lower()
+
+    if answer == "true":
+        return True
+    else:
+        return False
+
 # Helper function to upload image to Cloudinary
 
 
@@ -153,9 +187,18 @@ def add_user():
     name = request.form.get('name')
     info = request.form.get('info')
     image_file = request.files.get('image')
+    size = request.form.get('size')
+    phone = request.form.get('phone')
 
     # Upload image and get URL
     image_url = upload_image_to_cloudinary(image_file) if image_file else None
+
+    # Confirm image
+    if image_url:
+        if not confirm_image(image_url):
+            return jsonify({"error": "Image is not child's clothing"}), 400
+    else:
+        return jsonify({"error": "No image found"}), 400
 
     # Generate UUID
     user_uuid = str(uuid.uuid4())
@@ -246,6 +289,7 @@ def get_listings_t2():
     except ClientError as e:
         return jsonify({"error": str(e)}), 500
 
+
 @app.route('/get_listings_t1', methods=['GET'])
 def get_listings_t1():
     try:
@@ -254,6 +298,14 @@ def get_listings_t1():
         return jsonify(response['Items']), 200
     except ClientError as e:
         return jsonify({"error": str(e)}), 500
+
+
+@app.route('/call_gpt', methods=['GET'])
+def call_gpt():
+    answer = confirm_image(
+        "https://images-na.ssl-images-amazon.com/images/I/917zFbZhopL._SLDPMOBCAROUSELAUTOCROP288221_MCnd_AC_SR462,693_.jpg")
+    return jsonify({"answer": answer}), 200
+
 
 if __name__ == '__main__':
     # Run the app on all interfaces on port 8628
