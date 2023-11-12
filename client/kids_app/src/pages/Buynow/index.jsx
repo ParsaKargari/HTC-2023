@@ -7,6 +7,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import axios from 'axios';
 import { useAuth } from "../../AuthContext";
+import backgroundImage from '../../assets/background1.png'; // Adjust the path as needed
+
 import "./style.css";
 
 const Buynow = () => {
@@ -83,8 +85,15 @@ const Buynow = () => {
       </Card>
     ));
   };
-
-  return <div className="cards-grid">{createCards()}</div>;
+  
+  // Then use it in your component
+  return (
+    <div className="page-background">
+      {/* Blurred background is applied via CSS to the ::before pseudo-element */}
+      <div className="cards-grid">{createCards()}</div>
+    </div>
+  );
+  
 };
 
 export default Buynow;
