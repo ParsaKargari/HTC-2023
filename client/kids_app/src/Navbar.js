@@ -1,4 +1,3 @@
-// Navbar.js
 import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -8,10 +7,13 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import AccountCircle from "@mui/icons-material/AccountCircle"; // Icon for user profile
+import AccountCircle from "@mui/icons-material/AccountCircle";
 import LoginModal from "./LoginModal";
 import { useAuth } from "./AuthContext";
 import { Link } from "react-router-dom";
+import { Tooltip } from "@mui/material"; // Import Tooltip
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import "./Navbar.css";
 
 const clientId =
@@ -19,22 +21,19 @@ const clientId =
 
 const Navbar = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null); // For the profile menu
+  const [anchorEl, setAnchorEl] = useState(null);
   const { user, signOut } = useAuth();
-  const [buyCount, setBuyCount] = useState(null); // For bought items and donated items
-  const [sellCount, setSellCount] = useState(null); // For bought items and donated items
+  const [buyCount, setBuyCount] = useState(null);
+  const [sellCount, setSellCount] = useState(null);
 
-  // Update the user details every 5 seconds. fetch the user details from the backend
   useEffect(() => {
     const fetchUserDetails = async () => {
-      // Replace '/path-to-your-api' with the actual path to your API that returns user details
       try {
         const response = await fetch("/get_listings_t1");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        // Assuming the API returns an object with 'buy_count' and 'donate_count'
         setBuyCount(data[0].buy_count);
         setSellCount(data[0].sell_count);
       } catch (error) {
@@ -43,12 +42,12 @@ const Navbar = () => {
     };
 
     if (user) {
-      fetchUserDetails(); // Fetch once on mount and whenever the user logs in
-      const intervalId = setInterval(fetchUserDetails, 5000); // Set up the interval
+      fetchUserDetails();
+      const intervalId = setInterval(fetchUserDetails, 5000);
 
-      return () => clearInterval(intervalId); // Clear the interval when the component unmounts
+      return () => clearInterval(intervalId);
     }
-  }, [user]); // Only re-run the effect if the 'user' state changes
+  }, [user]);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -60,7 +59,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     signOut();
-    handleProfileMenuClose(); // Also close the profile menu
+    handleProfileMenuClose();
   };
 
   const isMenuOpen = Boolean(anchorEl);
@@ -110,6 +109,16 @@ const Navbar = () => {
         }}
       >
         <Toolbar className="navbar-links">
+          <Tooltip title="Welcome to our community! When you donate, you start with 3 free tokens. Every 2 pieces you donate, you'll receive a free clothing item as a token of appreciation.">
+            <IconButton
+              edge="start"
+              color="black"
+              aria-label="tutorial"
+              sx={{ ml: 1, mr: 3 }}
+            >
+              <InfoOutlinedIcon />
+            </IconButton>
+          </Tooltip>
           <Typography
             variant="h6"
             component="div"

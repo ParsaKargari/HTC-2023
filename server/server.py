@@ -1,3 +1,5 @@
+import os
+from decouple import config
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import boto3
@@ -10,8 +12,16 @@ from openai import OpenAI
 
 
 app = Flask(__name__)
+# Load environment variables from .env file
+app.config['OPENAI_API_KEY'] = config('OPENAI_API_KEY')
+app.config['AWS_ACCESS_KEY_ID'] = config('AWS_ACCESS_KEY_ID')
+app.config['AWS_SECRET_ACCESS_KEY'] = config('AWS_SECRET_ACCESS_KEY')
+app.config['CLOUDINARY_CLOUD_NAME'] = config('CLOUDINARY_CLOUD_NAME')
+app.config['CLOUDINARY_API_KEY'] = config('CLOUDINARY_API_KEY')
+app.config['CLOUDINARY_API_SECRET'] = config('CLOUDINARY_API_SECRET')
+
 client = OpenAI(
-    api_key="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"
+    api_key=app.config['OPENAI_API_KEY']
 )
 CORS(app)
 
@@ -19,14 +29,14 @@ CORS(app)
 dynamodb = boto3.resource(
     'dynamodb',
     region_name='ca-central-1',
-    aws_access_key_id='AKIAZ5K6T5DY37M2F6J5',
-    aws_secret_access_key='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'
+    aws_access_key_id=app.config['AWS_ACCESS_KEY_ID'],
+    aws_secret_access_key=app.config['AWS_SECRET_ACCESS_KEY']
 )
 
 cloudinary.config(
-    cloud_name="dlb4j1jyd",
-    api_key="911761227391725",
-    api_secret="GD-qbQ3hupMF5Sh1peNGy8JZXlY"
+    cloud_name=app.config['CLOUDINARY_CLOUD_NAME'],
+    api_key=app.config['CLOUDINARY_API_KEY'],
+    api_secret=app.config['CLOUDINARY_API_SECRET']
 )
 
 table1_name = 'UserTable'
