@@ -3,10 +3,25 @@ import React, { useState, useEffect } from "react";
 import { jwtDecode as decode } from "jwt-decode";
 import { useAuth } from "./AuthContext";
 import "./Modal.css";
+import email_icon from "./assets/email.png"; //some import error
+import password_icon from "./assets/password.png"; //some import error
+import logo from "./assets/logo.png"; //some import error
+
+
 
 const LoginModal = ({ open, onClose, clientId }) => {
   const [isSdkLoaded, setIsSdkLoaded] = useState(false);
   const { signIn } = useAuth();
+  const [name, setName] = useState('name');
+  const [email, setEmail] = useState('email');
+  const [password, setPassword] = useState('password');
+  const [user, setUser] = useState({});
+  const [navigate, setNavigate] = useState(false);
+
+
+  const handleNavigate = () => {
+    setNavigate(true);
+  };
 
   useEffect(() => {
     // Dynamically load the Google API script
@@ -73,7 +88,48 @@ const LoginModal = ({ open, onClose, clientId }) => {
         <span className="close" onClick={onClose}>
           &times;
         </span>
-        <div id="googleSignInButton"></div>
+        
+
+        {/* start new edits */}
+
+        <div className="container">
+          <img className="logo" src={logo} alt="TinyThreads Logo" />
+          <h2 className="page-header">Login</h2>
+
+          <div className="header">
+            <div className="text">Sign up</div>
+            <div className="underline"></div>
+          </div>
+
+          <div id="googleSignInButton"></div> {/* Google Sign-In button from Parsa's gauth code */}
+
+
+          <div className="input">
+            <img src={email_icon} alt="" />
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          <div className="input">
+            <img src={password_icon} alt="" />
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+
+          <button onClick={() => handleNavigate()}>Start Swapping!</button>
+        </div>
+
+        {/* end new edits */}
       </div>
     </div>
   );

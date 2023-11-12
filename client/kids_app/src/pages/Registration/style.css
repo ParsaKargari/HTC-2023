@@ -8,12 +8,17 @@ body {
   }
   
   .container {
-    height: 100vh;
+    height: 70vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(to bottom, rgba(131, 162, 255, 1) 10%, rgba(255, 210, 143, 1) 90%);
+    background: linear-gradient(to bottom, rgba(131, 162, 255, 1) 10%, #b4bdff 90%);
+    /* background-color: rgba(131, 162, 255, 1); */
+  }
+
+  .modal{
+    background-color: rgba(131, 162, 255, 1);
   }
   
   .logo {
@@ -22,12 +27,13 @@ body {
     margin-bottom: 20px;
   }
 
-  #SignInDiv{
+  #googleSignInButton
+{
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 1%;
+    margin-left: 6%;
     margin-bottom: 2%;
   }
   
