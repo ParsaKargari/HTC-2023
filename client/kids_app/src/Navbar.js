@@ -24,7 +24,6 @@ const Navbar = () => {
   const [buyCount, setBuyCount] = useState(null); // For bought items and donated items
   const [sellCount, setSellCount] = useState(null); // For bought items and donated items
 
-
   // Update the user details every 5 seconds. fetch the user details from the backend
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -90,8 +89,12 @@ const Navbar = () => {
             {user.name}
           </MenuItem>
           <MenuItem disabled>{user.email}</MenuItem>
-          <MenuItem disabled>Can Buy: {buyCount}</MenuItem>
-          <MenuItem disabled>Donated: {sellCount}</MenuItem>
+          <MenuItem disabled>Buy tokens: {buyCount}</MenuItem>
+          <MenuItem disabled>Total Donation: {sellCount}</MenuItem>
+          <MenuItem disabled>
+            Free Item in: {2 - (sellCount % 2)} donation
+            {2 - (sellCount % 2) === 1 ? "" : "s"}
+          </MenuItem>
         </>
       )}
     </Menu>

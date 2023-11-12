@@ -174,7 +174,7 @@ def add_user():
         table = dynamodb.Table(table2_name)
         table.put_item(Item=user_data)
 
-        # Increase sell count by 1, from table 1
+        # Increase sell count by 1, from table 1 and check if user gets free listing
         table = dynamodb.Table(table1_name)
         response = table.get_item(Key={'email': email})
         if 'Item' in response:
@@ -188,6 +188,17 @@ def add_user():
                 },
                 ReturnValues="UPDATED_NEW"
             )
+            if response['Item']['sell_count'] % 2 == 0:
+                table.update_item(
+                    Key={
+                        'email': email
+                    },
+                    UpdateExpression="set buy_count = buy_count + :val",
+                    ExpressionAttributeValues={
+                        ':val': 1
+                    },
+                    ReturnValues="UPDATED_NEW"
+                )
         return jsonify({"message": "User added successfully", "UUID": user_uuid}), 200
     except ClientError as e:
         return jsonify({"error": str(e)}), 500

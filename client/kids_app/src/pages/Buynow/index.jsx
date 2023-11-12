@@ -30,14 +30,23 @@ const Buynow = () => {
     const intervalId = setInterval(fetchData, 5000);
 
     return () => clearInterval(intervalId); // Clear interval on component unmount
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     const fetchData2 = async () => {
       try {
         const response = await fetch("/get_listings_t1");
         const jsonData = await response.json();
-        if (jsonData[0].buy_count === '0') {
+        // Look for the user's email in the list of emails
+        if (user === null) {
+          setCantBuy(true);
+          return;
+        }
+        const userEmail = user.email;
+        const emailList = jsonData.map((item) => item.email);
+        const emailIndex = emailList.indexOf(userEmail);
+
+        if (jsonData[emailIndex].buy_count === '0') {
           setCantBuy(true);
         } else {
           setCantBuy(false);
@@ -50,13 +59,8 @@ const Buynow = () => {
     fetchData2();
     const intervalId = setInterval(fetchData2, 2000);
 
-    // If not logged in, dsiable buy button
-    if (!user) {
-      setCantBuy(true);
-    }
-
     return () => clearInterval(intervalId); // Clear interval on component unmount
-  }, []);
+  }, [user]);
 
 
 

@@ -40,6 +40,7 @@ const Landing = () => {
           <div className="section__padding" id="home">
             <div className="hero-content">
               <h1>TinyThreads</h1>
+              <h3>"Dressing the future"</h3>
               <button onClick={() => handleNavigate("/donate")}>
                 DONATE NOW
               </button>
@@ -48,8 +49,10 @@ const Landing = () => {
           </div>
         </div>
 
+        <div className="scroll-down"></div>
+
         {/* About Section */}
-        <div className="about section__margin" id="about">
+        <div className="about">
           <div className="about-heading">
             <h1>
               <span>{text}</span>
@@ -73,23 +76,26 @@ const Landing = () => {
         </div>
         {/* Footer Section */}
         <div id="footer" className="footer">
-          <div className="social-icons-wrapper">
+          <div className="sustainable-goals">
+            <h3>Our Sustainable Objectives</h3>
+          </div>
+          <div className="social-icons-wrapper ">
             <a
-              href="https://www.instagram.com/lethbridgehsigem/"
+              href="https://www.un.org/sustainabledevelopment/inequality/"
               target="_blank"
               className="social-link facebook-link w-inline-block icon-link">
               <img src={no_bad} className="footer-image" alt="" />
             </a>
             <div className="footer-divider"></div>
             <a
-              href="https://www.facebook.com/lethbridgehsiGEM/"
+              href="https://www.un.org/sustainabledevelopment/sustainable-consumption-production/"
               target="_blank"
               className="social-link facebook-link w-inline-block icon-link">
               <img src={infinity} alt="logo" className="footer-image" />
             </a>
             <div className="footer-divider"></div>
             <a
-              href="https://twitter.com/lethhs_igem?lang=en"
+              href="https://www.un.org/sustainabledevelopment/climate-change/"
               target="_blank"
               className="social-link facebook-link w-inline-block icon-link">
               <img src={eye_world} className="footer-image" alt="" />

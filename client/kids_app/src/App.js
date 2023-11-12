@@ -7,6 +7,7 @@ import Donate from "./pages/Donate";
 import Buynow from "./pages/Buynow";
 import Navbar from "./Navbar"; // Import the Navbar component
 import { AuthProvider } from "./AuthContext";
+import { Navigate } from "react-router-dom";
 import "./App.css";
 
 const App = () => {
@@ -16,11 +17,13 @@ const App = () => {
         <Router>
           <Navbar /> {/* Include the Navbar here */}
           <Routes>
+            <Route path="/" element={<Navigate to="/landing" replace />} />
             <Route path="/registration" element={<Registration />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/landing" element={<Landing />} />
             <Route path="/donate" element={<Donate />} />
             <Route path="/buynow" element={<Buynow />} />
+            {/* Add other routes here */}
           </Routes>
         </Router>
       </AuthProvider>
@@ -29,3 +32,4 @@ const App = () => {
 };
 
 export default App;
+
