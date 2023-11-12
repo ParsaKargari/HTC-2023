@@ -3,6 +3,9 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import { useAuth } from "../../AuthContext";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+
 
 const Donate = () => {
   const { user } = useAuth(); // Assuming the useAuth hook provides user information
@@ -104,12 +107,25 @@ const Donate = () => {
           onChange={handleImageChange}
           required
         />
-        <TextField
+        <Select
           label="Size"
           name="size"
           value={formData.size}
           onChange={handleInputChange}
-        />
+          displayEmpty
+        >
+          <MenuItem value="">Select Size</MenuItem>
+          <MenuItem value="Newborn">Newborn</MenuItem>
+          <MenuItem value="0-3 m">0-3 m</MenuItem>
+          <MenuItem value="3-6 m">3-6 m</MenuItem>
+          <MenuItem value="6-12 m">6-12 m</MenuItem>
+          <MenuItem value="1y">1y</MenuItem>
+          <MenuItem value="2y">2y</MenuItem>
+          <MenuItem value="3y">3y</MenuItem>
+          <MenuItem value="4y">4y</MenuItem>
+          <MenuItem value="5y">5y</MenuItem>
+        </Select>
+
         <TextField
           label="Phone"
           name="phone"

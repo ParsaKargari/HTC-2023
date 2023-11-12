@@ -7,6 +7,9 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import axios from 'axios';
 import { useAuth } from "../../AuthContext";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+
 
 import "./style.css";
 
@@ -14,6 +17,7 @@ const Buynow = () => {
   const [data, setData] = useState([]);
   const { user, signOut } = useAuth();
   const [cantBuy, setCantBuy] = useState(true);
+  const [selectedSize, setSelectedSize] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -89,10 +93,18 @@ const Buynow = () => {
       // Handle errors, possibly showing an error message to the user
     }
   };
-  
+    // Function to filter items based on the selected size
+    const filterItemsBySize = () => {
+      if (selectedSize === "") {
+        return data; // If no size is selected, return all items
+      } else {
+        return data.filter((item) => item.Size === selectedSize);
+      }
+    };
 
   const createCards = () => {
-    return data.map((item) => (
+    const filteredData = filterItemsBySize();
+    return filteredData.map((item) => (
       <Card key={item.UUID} sx={{ maxWidth: 345, m: 2 }}>
         <CardMedia
           component="img"
@@ -108,6 +120,12 @@ const Buynow = () => {
             Contact Email: {item.Email}
           </Typography>
           <Typography variant="body2" color="text.secondary">
+            Phone Number: {item.Phone}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Size: {item.Size}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
             Info: {item.Info}
           </Typography>
         </CardContent>
@@ -121,11 +139,29 @@ const Buynow = () => {
   // Then use it in your component
   return (
     <div className="page-background">
-      {/* Blurred background is applied via CSS to the ::before pseudo-element */}
+      <div className="filter-dropdown">
+        {/* Dropdown menu for size filter */}
+        <Select
+    value={selectedSize}
+    onChange={(e) => setSelectedSize(e.target.value)}
+    displayEmpty
+    sx={{ minWidth: 200, m: 4 }}
+
+  >
+    <MenuItem value="">All Sizes</MenuItem>
+    <MenuItem value="Newborn">Newborn</MenuItem>
+    <MenuItem value="0-3 m">0-3 m</MenuItem>
+    <MenuItem value="3-6 m">3-6 m</MenuItem>
+    <MenuItem value="6-12 m">6-12 m</MenuItem>
+    <MenuItem value="1y">1y</MenuItem>
+    <MenuItem value="2y">2y</MenuItem>
+    <MenuItem value="3y">3y</MenuItem>
+    <MenuItem value="4y">4y</MenuItem>
+    <MenuItem value="5y">5y</MenuItem>
+  </Select>     </div>
       <div className="cards-grid">{createCards()}</div>
     </div>
   );
-  
 };
 
 export default Buynow;

@@ -219,7 +219,9 @@ def add_user():
         'Email': email,
         'Name': name,
         'Info': info,
-        'ImageURL': image_url
+        'ImageURL': image_url,
+        'Size': size,
+        'Phone': phone,
     }
 
     # Add user to DynamoDB table
