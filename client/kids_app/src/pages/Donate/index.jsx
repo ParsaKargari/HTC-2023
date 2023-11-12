@@ -148,6 +148,8 @@ const Donate = () => {
           {isSubmitting ? "Submitting..." : "Donate"}
         </Button>
       </form>
+
+
     </div>
   );
 };
