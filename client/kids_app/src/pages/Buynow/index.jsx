@@ -14,6 +14,7 @@ import "./style.css";
 const Buynow = () => {
   const [data, setData] = useState([]);
   const { user, signOut } = useAuth();
+  const [cantBuy, setCantBuy] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,6 +32,34 @@ const Buynow = () => {
 
     return () => clearInterval(intervalId); // Clear interval on component unmount
   }, []);
+
+  useEffect(() => {
+    const fetchData2 = async () => {
+      try {
+        const response = await fetch("http://10.9.155.81:8628/get_listings_t1");
+        const jsonData = await response.json();
+        if (jsonData[0].buy_count === '0') {
+          setCantBuy(true);
+        } else {
+          setCantBuy(false);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData2();
+    const intervalId = setInterval(fetchData2, 2000);
+
+    // If not logged in, dsiable buy button
+    if (!user) {
+      setCantBuy(true);
+    }
+
+    return () => clearInterval(intervalId); // Clear interval on component unmount
+  }, []);
+
+
 
   const handleBuyNow = async (UUID, email) => {
     try {
@@ -80,11 +109,11 @@ const Buynow = () => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={() => handleBuyNow(item.UUID, item.Email)}>Buy Now</Button>
+          <Button disabled={cantBuy} size="small" onClick={() => handleBuyNow(item.UUID, item.Email)}>Buy Now</Button>
         </CardActions>
       </Card>
     ));
-  };
+  }; 
   
   // Then use it in your component
   return (
