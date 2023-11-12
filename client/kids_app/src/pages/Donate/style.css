@@ -5,6 +5,7 @@ body {
   padding: 0;
   font-family: "Poppins";
   background-color: #eee;
+  background: url("../../assets/bg-image.webp") center center/cover no-repeat;
 }
 * {
   box-sizing: border-box;
@@ -12,12 +13,12 @@ body {
 
 form {
   display: block;
-  background-color: #ffd28f;
-  box-shadow: 1px 1px 3px 2px;
+  background-color: #f4a261;
   margin: 40px auto;
   max-width: 700px;
   max-height: 900px;
-  padding: 20px;
+  padding: 20px 40px;
+  border-radius: 8px;
 }
 
 form input,
@@ -28,6 +29,8 @@ textarea {
   margin: 30px auto;
   padding: 8px auto;
   font-family: "Poppins";
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
 }
 
 form h1 {
@@ -36,4 +39,24 @@ form h1 {
 
 form span {
   color: rgb(65, 185, 225);
+}
+
+form button {
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+  border: none;
+  align-items: center;
+  padding: 10px auto;
+  border-radius: 8px;
+}
+
+button:hover {
+  background-color: rgb(65, 185, 225);
+  color: white;
+}
+
+.Donate-Page::before {
+  content: "";
+  position: absolute;
 }
