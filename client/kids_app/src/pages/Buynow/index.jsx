@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
+import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import "./style.css";
 
@@ -11,9 +13,7 @@ const Buynow = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "http://10.12.170.44:8628/get_listings_t2"
-        );
+        const response = await fetch("http://10.13.164.140:8628/get_listings_t2");
         const jsonData = await response.json();
         setData(jsonData);
       } catch (error) {
@@ -28,8 +28,8 @@ const Buynow = () => {
   }, []);
 
   const createCards = () => {
-    return data.map((item, index) => (
-      <Card key={item.UUID} style={{ width: 300, margin: 10 }}>
+    return data.map((item) => (
+      <Card key={item.UUID} sx={{ maxWidth: 345, m: 2 }}>
         <CardMedia
           component="img"
           height="140"
@@ -38,14 +38,18 @@ const Buynow = () => {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {item.Name}
+            Seller Name: {item.Name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Email: {item.Email}
-            <br />
+            Contact Email: {item.Email}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
             Info: {item.Info}
           </Typography>
         </CardContent>
+        <CardActions>
+          <Button size="small">Buy Now</Button>
+        </CardActions>
       </Card>
     ));
   };

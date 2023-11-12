@@ -1,7 +1,14 @@
 .cards-grid {
-  display: grid;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centers the cards horizontally */
+  align-items: flex-start; /* Aligns cards to the top */
+  gap: 20px; /* Spacing between cards */
+  padding: 20px; /* Padding around the card container */
+  box-sizing: border-box; /* Ensures padding does not affect the overall width */
+}
+
+.card {
+  margin: 0 auto; /* Centers each card within the flex container */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Adds a subtle shadow for depth */
 }
