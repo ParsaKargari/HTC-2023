@@ -16,10 +16,10 @@ Welcome to our project for Hack the Change 2023! This project is a collaborative
 
 ## Technology Stack
 
-- Backend: Python Flask
+- Backend: AWS
 - Frontend: React
-- Database: [Specify if used]
-- Others: [List any other technologies used]
+- Database: DynamoDB
+- Others: Figma
 
 ## Getting Started
 
