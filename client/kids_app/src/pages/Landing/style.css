@@ -1,9 +1,7 @@
 .hero {
   position: relative;
-  height: 80vh;
   width: 100%;
   overflow: hidden;
-  padding: 0;
   height: 100vh; /* Set the height to cover the entire viewport */
 }
 
@@ -44,7 +42,7 @@
   font-weight: bolder;
   text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
   /* animation: glow 0.5s infinite alternate; */
-  padding-bottom: 5rem;
+  padding-bottom: 2rem; /* Adjust this value to decrease the padding */
 }
 
 .hero-content p {
@@ -274,6 +272,7 @@
 
 .social-icons-wrapper {
   position: relative;
+  justify-content: space-evenly;
   z-index: 5;
   display: grid;
   display: flex;
@@ -320,21 +319,20 @@
 .social-link {
   width: 90%;
   height: auto;
-  background-color: #585858;
 }
 .social-link.facebook-link {
-  background-color: #585858;
+  /* background-color: #585858; */
   max-width: 20%;
   min-width: 19%;
 }
 
-.social-link.facebook-link:hover {
+/* .social-link.facebook-link:hover {
   background-color: #4460a0;
-}
+} */
 
-.social-link.twitter-link {
+/* .social-link.twitter-link {
   background-color: #585858;
-}
+} */
 .social-link.twitter-link:hover {
   background-color: #00acee;
 }
@@ -344,9 +342,9 @@
 .social-link.gitlab-link:hover {
   background-color: #db5b28ce;
 }
-.social-link.instagram-link {
+/* .social-link.instagram-link {
   background-color: #585858;
-}
+} */
 .social-link.instagram-link:hover {
   background-color: #ed4a55; /* Color to change to when hovered */
 }
@@ -364,4 +362,12 @@
   -webkit-transform: rotate(20deg);
   -ms-transform: rotate(20deg);
   transform: rotate(20deg);
+}
+
+/* Add this to your existing style.css or create a new CSS file */
+.footer-image {
+  width: 100%; /* Adjust this value as needed */
+  height: auto;
+  max-width: 288px; /* Adjust this value as needed */
+  border-radius: 20px;
 }

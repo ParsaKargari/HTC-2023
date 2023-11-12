@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 import "./style.css";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
+import infinity from "../../assets/infinity.png";
+import eye_world from "../../assets/eye_world.png";
+import no_bad from "../../assets/no_bad.png";
 
 const Landing = () => {
   const [navigate, setNavigate] = useState(false);
@@ -72,64 +75,26 @@ const Landing = () => {
         <div id="footer" className="footer">
           <div className="social-icons-wrapper">
             <a
+              href="https://www.instagram.com/lethbridgehsigem/"
+              target="_blank"
+              className="social-link facebook-link w-inline-block icon-link">
+              <img src={no_bad} className="footer-image" alt="" />
+            </a>
+            <div className="footer-divider"></div>
+            <a
               href="https://www.facebook.com/lethbridgehsiGEM/"
               target="_blank"
               className="social-link facebook-link w-inline-block icon-link">
-              <img
-                src="https://static.igem.wiki/teams/4599/wiki/facebook-logo.png"
-                width="288"
-                sizes="(max-width: 479px) 20vw, (max-width: 767px) 19vw, (max-width: 991px) 20vw, 16vw"
-                alt=""
-              />
+              <img src={infinity} alt="logo" className="footer-image" />
             </a>
             <div className="footer-divider"></div>
             <a
               href="https://twitter.com/lethhs_igem?lang=en"
               target="_blank"
-              className="social-link twitter-link w-inline-block icon-link">
-              <img
-                src="https://static.igem.wiki/teams/4599/wiki/x-logo.png"
-                width="288"
-                sizes="(max-width: 479px) 20vw, (max-width: 767px) 19vw, (max-width: 991px) 20vw, 16vw"
-                alt=""
-              />
+              className="social-link facebook-link w-inline-block icon-link">
+              <img src={eye_world} className="footer-image" alt="" />
             </a>
             <div className="footer-divider"></div>
-            <a
-              href="https://www.instagram.com/lethbridgehsigem/"
-              target="_blank"
-              className="social-link instagram-link w-inline-block icon-link">
-              <img
-                src="https://static.igem.wiki/teams/4599/wiki/instagram-logo.png"
-                width="288"
-                sizes="(max-width: 479px) 20vw, (max-width: 767px) 19vw, (max-width: 991px) 20vw, 16vw"
-                alt=""
-              />
-            </a>
-            <div className="footer-divider"></div>
-            <a
-              href="https://www.tiktok.com/@lethbridgehsigem"
-              target="_blank"
-              className="social-link tik-tok-link w-inline-block icon-link">
-              <img
-                src="https://static.igem.wiki/teams/4599/wiki/tik-tok-logo.png"
-                width="288"
-                sizes="(max-width: 479px) 20vw, (max-width: 767px) 19vw, (max-width: 991px) 20vw, 16vw"
-                alt=""
-              />
-            </a>
-            <div className="footer-divider"></div>
-            <a
-              href="https://gitlab.igem.org/2023/lethbridgehs/-/tree/main/"
-              target="_blank"
-              className="social-link gitlab-link w-inline-block icon-link">
-              <img
-                src="https://static.igem.wiki/teams/4599/wiki/gitlab-logo.png"
-                width="288"
-                sizes="(max-width: 479px) 20vw, (max-width: 767px) 19vw, (max-width: 991px) 20vw, 16vw"
-                alt=""
-              />
-            </a>
           </div>
         </div>
       </div>
