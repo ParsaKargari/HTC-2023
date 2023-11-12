@@ -134,7 +134,7 @@ const Navbar = () => {
               Donate
             </Button>
             <Button component={Link} to="/buynow" sx={{ color: "black" }}>
-              Buy Now
+              Grab
             </Button>
             {!user ? (
               <Button color="inherit" onClick={() => setModalOpen(true)}>
