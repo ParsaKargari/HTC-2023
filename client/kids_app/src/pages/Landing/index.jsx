@@ -42,9 +42,9 @@ const Landing = () => {
               <h1>TinyThreads</h1>
               <h3>"Dressing the Future"</h3>
               <button onClick={() => handleNavigate("/donate")}>
-                DONATE NOW
+                DONATE
               </button>
-              <button onClick={() => handleNavigate("/buynow")}>BUY NOW</button>
+              <button onClick={() => handleNavigate("/buynow")}>GRAB</button>
             </div>
           </div>
         </div>
