@@ -6,6 +6,9 @@
   gap: 20px; /* Spacing between cards */
   padding: 20px; /* Padding around the card container */
   box-sizing: border-box; /* Ensures padding does not affect the overall width */
+  position: relative;
+  z-index: 2; /* Higher z-index to ensure the content appears above the blurred background */
+  /* Your existing styles for .cards-grid */
 }
 
 .card {
