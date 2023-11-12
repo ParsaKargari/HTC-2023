@@ -1,12 +1,12 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Registration from './pages/Registration';
-import Profile from './pages/Profile';
-import Landing from './pages/Landing';
-import Donate from './pages/Donate';
-import Buynow from './pages/Buynow';
-import Navbar from './Navbar'; // Import the Navbar component
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Registration from "./pages/Registration";
+import Profile from "./pages/Profile";
+import Landing from "./pages/Landing";
+import Donate from "./pages/Donate";
+import Buynow from "./pages/Buynow";
+import Navbar from "./components/navbar/navbar"; // Import the Navbar component
+import "./App.css";
 
 const App = () => {
   return (

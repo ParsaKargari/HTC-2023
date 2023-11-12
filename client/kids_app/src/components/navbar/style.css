@@ -1,0 +1,17 @@
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-nav {
+  width: 3rem;
+  height: 3rem;
+  margin: 0;
+}
