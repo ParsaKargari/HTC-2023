@@ -1,0 +1,36 @@
+/* Navbar.css */
+
+/* Ensure the content below the navbar is not hidden */
+body {
+    padding-top: 64px; /* Adjust this value based on your AppBar's height */
+  }
+  
+  /* Style for AppBar when it's in 'fixed' position */
+  .navbar {
+    width: 100%;
+    /* This will make the navbar translucent */
+    background-color: rgba(255, 255, 255, 0.7) !important;
+    /* This will apply a blur to the elements below the navbar */
+    backdrop-filter: blur(10px) !important;
+  }
+  
+  /* Styles for the Toolbar if needed */
+  .navbar-links {
+    /* Your styles here */
+  }
+  
+  /* Styles for the buttons/links to ensure they are visible on light background */
+  .navbar-links .MuiButton-root {
+    color: black; /* This will make the text black or any color that contrasts well with your AppBar's background */
+  }
+  
+  /* You can also style the active link differently if needed */
+  .navbar-links .MuiButton-text.active {
+    color: #f50057; /* Change the active link color if needed */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    /* Your responsive styles here */
+  }
+  

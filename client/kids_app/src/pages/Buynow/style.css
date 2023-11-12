@@ -1,0 +1,40 @@
+.cards-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centers the cards horizontally */
+  align-items: flex-start; /* Aligns cards to the top */
+  gap: 20px; /* Spacing between cards */
+  padding: 20px; /* Padding around the card container */
+  box-sizing: border-box; /* Ensures padding does not affect the overall width */
+  position: relative;
+  z-index: 2; /* Higher z-index to ensure the content appears above the blurred background */
+  /* Your existing styles for .cards-grid */
+}
+
+.card {
+  margin: 0 auto; /* Centers each card within the flex container */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Adds a subtle shadow for depth */
+}
+
+/* style.css */
+
+.page-background {
+  position: relative;
+  height: 100vh;
+  overflow: hidden; /* Prevent scrollbars from appearing due to the pseudo-element */
+}
+
+.page-background::before {
+  content: '';
+  position: fixed; /* Fixed position to cover the viewport and not scroll with the content */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Ensure the image doesn't scroll with the content */
+  z-index: -1; /* Place the background below the content */
+}
+
+
