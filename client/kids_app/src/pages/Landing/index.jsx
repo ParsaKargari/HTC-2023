@@ -40,7 +40,7 @@ const Landing = () => {
           <div className="section__padding" id="home">
             <div className="hero-content">
               <h1>TinyThreads</h1>
-              <h3>"Dressing the future"</h3>
+              <h3>"Dressing the Future"</h3>
               <button onClick={() => handleNavigate("/donate")}>
                 DONATE NOW
               </button>
@@ -83,21 +83,24 @@ const Landing = () => {
             <a
               href="https://www.un.org/sustainabledevelopment/inequality/"
               target="_blank"
-              className="social-link facebook-link w-inline-block icon-link">
+              className="social-link facebook-link w-inline-block icon-link"
+            >
               <img src={no_bad} className="footer-image" alt="" />
             </a>
             <div className="footer-divider"></div>
             <a
               href="https://www.un.org/sustainabledevelopment/sustainable-consumption-production/"
               target="_blank"
-              className="social-link facebook-link w-inline-block icon-link">
+              className="social-link facebook-link w-inline-block icon-link"
+            >
               <img src={infinity} alt="logo" className="footer-image" />
             </a>
             <div className="footer-divider"></div>
             <a
               href="https://www.un.org/sustainabledevelopment/climate-change/"
               target="_blank"
-              className="social-link facebook-link w-inline-block icon-link">
+              className="social-link facebook-link w-inline-block icon-link"
+            >
               <img src={eye_world} className="footer-image" alt="" />
             </a>
             <div className="footer-divider"></div>
