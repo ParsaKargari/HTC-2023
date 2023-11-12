@@ -9,8 +9,8 @@ const Landing = () => {
         <div className="section__padding" id="home">
           <div className="hero-content">
             <h1>TinyThreads</h1>
-            <button>DONATE NOW | BUY NOW</button>
-            <button>DONATE NOW | BUY NOW</button>
+            <button>DONATE NOW</button>
+            <button>BUY NOW</button>
           </div>
         </div>
       </div>

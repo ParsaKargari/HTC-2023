@@ -4,6 +4,8 @@ import Registration from "./pages/Registration";
 import Profile from "./pages/Profile";
 import Landing from "./pages/Landing";
 import Donate from "./pages/Donate";
+import Buynow from "./pages/Buynow";
+
 /*import {} from "./containers";*/
 
 /*import {} from "./components"; */

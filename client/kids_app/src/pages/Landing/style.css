@@ -4,6 +4,7 @@
   width: 100%;
   overflow: hidden;
   padding: 0;
+  height: 100vh; /* Set the height to cover the entire viewport */
 }
 
 .hero::before {
@@ -41,6 +42,7 @@
   font-weight: bolder;
   text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
   /* animation: glow 0.5s infinite alternate; */
+  padding-bottom: 2rem;
 }
 
 .hero-content p {
@@ -203,4 +205,29 @@
   .about-link {
     margin: 5px 0;
   }
+}
+
+/* Add the following styles to your existing CSS or create a new CSS file */
+
+/* ... your existing styles ... */
+
+.hero-content button {
+  font-family: var(--font-family3);
+  background-color: #96beff; /* Green background color */
+  color: white; /* White text color */
+  padding: 15px 32px; /* Padding around the text */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px; /* Margin between buttons */
+  cursor: pointer;
+  border: none; /* Remove button border */
+  border-radius: 5px; /* Optional: Add some border-radius for rounded corners */
+  font-weight: bolder;
+  text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content button:hover {
+  background-color: #b4bdff; /* Darker green color on hover */
 }
