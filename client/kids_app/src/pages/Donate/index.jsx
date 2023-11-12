@@ -5,6 +5,9 @@ import Alert from "@mui/material/Alert";
 import { useAuth } from "../../AuthContext";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import "./style.css";
+import logo from '../../assets/logo.png';
+import footer_image from '../../assets/clothing_hook.png';
 
 
 const Donate = () => {
@@ -86,8 +89,12 @@ const Donate = () => {
   };
 
   return (
-    <div>
-      <h1>Donate Children's Clothing</h1>
+    <div id="page">
+      <div className="header">
+        <h1>Donate Children's Clothing</h1>
+        <img id="logo" src={logo} /> 
+      </div>
+     
       {submissionSuccess && (
         <Alert severity="success">Donation submitted successfully.</Alert>
       )}
@@ -141,6 +148,10 @@ const Donate = () => {
           {isSubmitting ? "Submitting..." : "Donate"}
         </Button>
       </form>
+
+      {/* <div className="footer"> */}
+        <img id="footer_image" src={footer_image} />
+      {/* </div> */}
     </div>
   );
 };
