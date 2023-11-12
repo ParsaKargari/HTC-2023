@@ -1,34 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
 import "./style.css";
 
 const Landing = () => {
-  return (
-    <div>
-      {/* Hero Section */}
-      <div className="hero">
-        <div className="section__padding" id="home">
-          <div className="hero-content">
-            <h1>TinyThreads</h1>
-            <button>DONATE NOW</button>
-            <button>BUY NOW</button>
-          </div>
-        </div>
-      </div>
+  const [navigate, setNavigate] = useState(false);
+  const [destination, setDestination] = useState("");
 
-      {/* About Section
-      <div className="about">
-        <div className="section__padding" id="about">
-          <div className="about-content">
-            <h2>About Us</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-              facilisi. ...
-            </p>
+  const handleNavigate = (path) => {
+    // Your authentication logic goes here
+    // For now, let's assume it always passes
+    if (true) {
+      setDestination(path);
+      setNavigate(true);
+    }
+  };
+
+  if (navigate) {
+    return <Navigate to={destination} />;
+  } else {
+    return (
+      <div>
+        {/* Hero Section */}
+        <div className="hero">
+          <div className="section__padding" id="home">
+            <div className="hero-content">
+              <h1>TinyThreads</h1>
+              <button onClick={() => handleNavigate("/donate")}>
+                DONATE NOW
+              </button>
+              <button onClick={() => handleNavigate("/buynow")}>BUY NOW</button>
+            </div>
           </div>
         </div>
-      </div> */}
-    </div>
-  );
+
+        {/* About Section */}
+        {/* ... (the rest of your component) */}
+      </div>
+    );
+  }
 };
 
 export default Landing;

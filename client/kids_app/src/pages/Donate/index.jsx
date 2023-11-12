@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 
 const Donate = () => {
-  return <div>index 3</div>;
+  return <div>Donate</div>;
 };
 
 export default Donate;
