@@ -235,6 +235,15 @@ def get_listings_t2():
     except ClientError as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route('/get_listings_t1', methods=['GET'])
+def get_listings_t1():
+    try:
+        table = dynamodb.Table(table1_name)
+        response = table.scan()
+        return jsonify(response['Items']), 200
+    except ClientError as e:
+        return jsonify({"error": str(e)}), 500
+
 if __name__ == '__main__':
     # Run the app on all interfaces on port 8628
     # Uncomment the below line to create the table. Run once.
