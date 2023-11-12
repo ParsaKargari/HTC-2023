@@ -7,7 +7,6 @@ import cloudinary.uploader
 # Random UUID generator
 import uuid
 
-from config import region_name, aws_access_key_id, aws_secret_access_key, cloud_name, api_key, api_secret
 
 app = Flask(__name__)
 CORS(app)
@@ -15,15 +14,15 @@ CORS(app)
 # Initialize DynamoDB resource
 dynamodb = boto3.resource(
     'dynamodb',
-    region_name=region_name,
-    aws_access_key_id=aws_access_key_id,
-    aws_secret_access_key=aws_secret_access_key
+    region_name='ca-central-1',
+    aws_access_key_id='AKIAZ5K6T5DY37M2F6J5',
+    aws_secret_access_key='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'
 )
 
 cloudinary.config(
-    cloud_name=cloud_name,
-    api_key=api_key,
-    api_secret=api_secret
+    cloud_name="dlb4j1jyd",
+    api_key="911761227391725",
+    api_secret="GD-qbQ3hupMF5Sh1peNGy8JZXlY"
 )
 
 table1_name = 'UserTable'
@@ -123,6 +122,7 @@ def login_user():
     user_data = {
         'email': email,
         'buy_count': 3,
+        'sell_count': 0,
     }
 
     # Add user to DynamoDB table
@@ -171,6 +171,21 @@ def add_user():
     try:
         table = dynamodb.Table(table2_name)
         table.put_item(Item=user_data)
+
+        # Increase sell count by 1, from table 1
+        table = dynamodb.Table(table1_name)
+        response = table.get_item(Key={'email': email})
+        if 'Item' in response:
+            table.update_item(
+                Key={
+                    'email': email
+                },
+                UpdateExpression="set sell_count = sell_count + :val",
+                ExpressionAttributeValues={
+                    ':val': 1
+                },
+                ReturnValues="UPDATED_NEW"
+            )
         return jsonify({"message": "User added successfully", "UUID": user_uuid}), 200
     except ClientError as e:
         return jsonify({"error": str(e)}), 500
@@ -207,6 +222,7 @@ def buy():
     except ClientError as e:
         return jsonify({"error": str(e)}), 500
 
+# 
 
 if __name__ == '__main__':
     # Run the app on all interfaces on port 8628
