@@ -39,7 +39,7 @@ const Buynow = () => {
   useEffect(() => {
     const fetchData2 = async () => {
       try {
-        const response = await fetch("/get_listings_t1");
+        const response = await fetch("http://10.13.105.60:8628/get_listings_t1");
         const jsonData = await response.json();
         // Look for the user's email in the list of emails
         if (user === null) {

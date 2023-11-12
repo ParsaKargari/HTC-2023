@@ -149,9 +149,7 @@ const Donate = () => {
         </Button>
       </form>
 
-      {/* <div className="footer"> */}
-        <img id="footer_image" src={footer_image} />
-      {/* </div> */}
+
     </div>
   );
 };

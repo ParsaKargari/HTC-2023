@@ -25,7 +25,7 @@ const Navbar = () => {
   const { user, signOut } = useAuth();
   const [buyCount, setBuyCount] = useState(null);
   const [sellCount, setSellCount] = useState(null);
-
+  
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
@@ -134,7 +134,7 @@ const Navbar = () => {
               Donate
             </Button>
             <Button component={Link} to="/buynow" sx={{ color: "black" }}>
-              Buy Now
+              Grab
             </Button>
             {!user ? (
               <Button color="inherit" onClick={() => setModalOpen(true)}>

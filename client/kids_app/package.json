@@ -2,7 +2,6 @@
   "name": "kids_app",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://10.13.69.102:8628",
   "proxy": "http://10.13.105.60:8628",
   "dependencies": {
     "@emotion/react": "^11.11.1",

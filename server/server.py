@@ -243,7 +243,8 @@ def add_user():
                 },
                 ReturnValues="UPDATED_NEW"
             )
-            if response['Item']['sell_count'] % 2 == 0:
+            current_sell_count = response['Item']['sell_count']
+            if (current_sell_count + 1) % 2 == 0:
                 table.update_item(
                     Key={
                         'email': email
