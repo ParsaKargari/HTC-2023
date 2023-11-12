@@ -25,7 +25,7 @@ const Navbar = () => {
   const { user, signOut } = useAuth();
   const [buyCount, setBuyCount] = useState(null);
   const [sellCount, setSellCount] = useState(null);
-
+  
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
