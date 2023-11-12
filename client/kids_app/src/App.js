@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Registration from "./pages/Registration";
 import Profile from "./pages/Profile";
 import Landing from "./pages/Landing";
+import Donate from "./pages/Donate";
 /*import {} from "./containers";*/
 
 /*import {} from "./components"; */
@@ -16,6 +17,8 @@ const App = () => {
           <Route path="/registration" element={<Registration />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/landing" element={<Landing />} />
+          <Route path="/donate" element={<Donate />} />
+          <Route path="/buynow" element={<Buynow />} />
         </Routes>
       </Router>
     </>
