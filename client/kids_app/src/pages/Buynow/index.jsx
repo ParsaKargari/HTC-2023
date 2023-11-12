@@ -14,7 +14,7 @@ const Buynow = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://10.13.164.140:8628/get_listings_t2");
+        const response = await fetch("http://10.9.155.81:8628/get_listings_t2");
         const jsonData = await response.json();
         setData(jsonData);
       } catch (error) {
