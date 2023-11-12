@@ -6,10 +6,12 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import axios from 'axios';
+import { useAuth } from "../../AuthContext";
 import "./style.css";
 
 const Buynow = () => {
   const [data, setData] = useState([]);
+  const { user, signOut } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +35,7 @@ const Buynow = () => {
       // Construct form data
       const formData = new FormData();
       formData.append('UUID', UUID);
-      formData.append('email', email);
+      formData.append('email', user.email);
   
       // Set the request headers for form data
       const config = {
@@ -43,7 +45,7 @@ const Buynow = () => {
       };
   
       // Send the POST request with form data
-      const response = await axios.post('http://10.13.164.140:8628/buy', formData, config);
+      const response = await axios.post('http://10.9.155.81:8628/buy', formData, config);
   
       // Handle response
       console.log(response.data);

@@ -1,5 +1,5 @@
 // Navbar.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -21,7 +21,35 @@ const Navbar = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null); // For the profile menu
   const { user, signOut } = useAuth();
-  const {details, setDetails} = useState(null); // For bought items and donated items
+  const [buyCount, setBuyCount] = useState(null); // For bought items and donated items
+  const [sellCount, setSellCount] = useState(null); // For bought items and donated items
+
+
+  // Update the user details every 5 seconds. fetch the user details from the backend
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      // Replace '/path-to-your-api' with the actual path to your API that returns user details
+      try {
+        const response = await fetch("http://10.9.155.81:8628/get_listings_t1");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        // Assuming the API returns an object with 'buy_count' and 'donate_count'
+        setBuyCount(data[0].buy_count);
+        setSellCount(data[0].sell_count);
+      } catch (error) {
+        console.error("Could not fetch user details:", error);
+      }
+    };
+
+    if (user) {
+      fetchUserDetails(); // Fetch once on mount and whenever the user logs in
+      const intervalId = setInterval(fetchUserDetails, 5000); // Set up the interval
+
+      return () => clearInterval(intervalId); // Clear the interval when the component unmounts
+    }
+  }, [user]); // Only re-run the effect if the 'user' state changes
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -38,7 +66,7 @@ const Navbar = () => {
 
   const isMenuOpen = Boolean(anchorEl);
 
-  const menuId = 'primary-search-account-menu';
+  const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -55,15 +83,15 @@ const Navbar = () => {
       open={isMenuOpen}
       onClose={handleProfileMenuClose}
     >
-      {user && ( // Check if the user object is not null before rendering the user details
+      {user && (
         <>
           <MenuItem disabled>
-            <AccountCircle sx={{ mr: 2}} />
+            <AccountCircle sx={{ mr: 2 }} />
             {user.name}
           </MenuItem>
           <MenuItem disabled>{user.email}</MenuItem>
-          <MenuItem disabled>Can Buy: {user.buy_count}</MenuItem>
-          <MenuItem disabled>Donated: {user.donate_count}</MenuItem>
+          <MenuItem disabled>Can Buy: {buyCount}</MenuItem>
+          <MenuItem disabled>Donated: {sellCount}</MenuItem>
         </>
       )}
     </Menu>
@@ -114,7 +142,7 @@ const Navbar = () => {
                 >
                   <AccountCircle />
                 </IconButton>
-                <Button color="inherit" onClick={handleLogout} sx={{ml: 1.5}}>
+                <Button color="inherit" onClick={handleLogout} sx={{ ml: 1.5 }}>
                   Logout
                 </Button>
               </Box>
