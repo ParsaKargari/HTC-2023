@@ -222,7 +222,16 @@ def buy():
     except ClientError as e:
         return jsonify({"error": str(e)}), 500
 
-# 
+
+# Get all listings from DynamoDB table 2
+@app.route('/get_listings_t2', methods=['GET'])
+def get_listings_t2():
+    try:
+        table = dynamodb.Table(table2_name)
+        response = table.scan()
+        return jsonify(response['Items']), 200
+    except ClientError as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     # Run the app on all interfaces on port 8628

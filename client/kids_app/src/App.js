@@ -71,6 +71,18 @@ function App() {
                 <input type="email" placeholder="Email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} /><br />
                 <button type="submit">Login</button>
             </form>
+            <button onClick={
+                async () => {
+                    try {
+                        const response = await axios.get('http://localhost:8628/get_listings_t2');
+                        console.log('Response:', response.data);
+                    } catch (error) {
+                        console.error('Error during data fetch:', error);
+                    }
+                }
+            }>Get Data</button>
+            
+            
         </div>
     );
 }
