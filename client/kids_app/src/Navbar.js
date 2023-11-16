@@ -17,7 +17,7 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import "./Navbar.css";
 
 const clientId =
-  "970353632939-3d743a1i9uu5q2l0esequd3uluqgtt7p.apps.googleusercontent.com";
+  "";
 
 const Navbar = () => {
   const [modalOpen, setModalOpen] = useState(false);
