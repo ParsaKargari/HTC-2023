@@ -1,6 +1,6 @@
 ## TinyThreads 👶💧👕🥶
 
-## Hack the Change 2023 🫳
+### Hack the Change 2023 🫳
 
 ## Overview
 
